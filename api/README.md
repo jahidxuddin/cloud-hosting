@@ -20,8 +20,8 @@ Während der Entwicklung brauchst du zum Starten des Entwicklungsserver den folg
 npm run dev
 ```
 Es ist wichtig zu beachten, dass du die Docker Engine während der Entwicklung an hast. Des Weiteren solltest du das Repository immer up-to-date halten. Sprich, du führst bei jedem Start den folgenden Befehl aus:
-```
-$ git fetch origin
+```shell
+git fetch origin
 ```
 Um Änderungen am Prisma Schema zu migrieren, bietet Prisma den folgenden Befehl:
 ```shell
