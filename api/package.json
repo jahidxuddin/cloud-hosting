@@ -1,0 +1,27 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\""
+  },
+  "keywords": [],
+  "author": "Jahid Uddin",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.8",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.19.2"
+  }
+}
