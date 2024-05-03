@@ -15,7 +15,7 @@ npm run build
 ```
 
 ## Entwicklung
-Während der Entwicklung brauchst du zum Starten des Entwicklungsserver den folgenden Befehl:
+Während der Entwicklung brauchst du zum Starten des Entwicklungsservers den folgenden Befehl:
 ```shell
 npm run dev
 ```
