@@ -3,7 +3,8 @@
 ## Wie startet man? 
 
 1. Navigiere zum API Ordner.
-2. Führe folgende Befehle aus:
+2. Erstelle eine .env Datei und halte dich an die Beispiel-Datei ```.env.example```.
+3. Führe folgende Befehle aus:
 ```shell
 docker compose up -d
 ```
