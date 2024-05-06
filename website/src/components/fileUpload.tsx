@@ -1,3 +1,5 @@
+"use client";
+
 // components/FileUpload.tsx
 import React, { useState } from 'react';
 
