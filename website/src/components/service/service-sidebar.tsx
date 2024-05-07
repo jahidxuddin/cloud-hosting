@@ -11,9 +11,14 @@ export default function ServiceSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-1/5 h-screen border-r-2 space-y-2 pt-4 pb-24">
+    <div className="w-1/5 h-screen border-r-2 space-y-2 pt-4 pb-20">
       <div className="p-2 text-center">
-        <h1 className="font-bold text-3xl">Hosting Anbieter</h1>
+        <h1
+          className="font-bold text-3xl cursor-pointer"
+          onClick={() => window.location.reload()}
+        >
+          Hosting Anbieter
+        </h1>
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="space-y-2 px-7">
