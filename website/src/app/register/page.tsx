@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import RegisterForm from "@/components/register/register-form";
 
 export const metadata: Metadata = {
-  title: "Registrierung | Hosting Service",
+  title: "Registrierung",
 };
 
 export default function Register(): JSX.Element {

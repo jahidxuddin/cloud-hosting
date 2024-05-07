@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Anmeldung | Hosting Service",
+  title: "Anmeldung",
 };
 
 export default function Login() {
