@@ -4,6 +4,7 @@ import {
   ShieldCheckIcon,
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,9 +18,11 @@ export default function Home() {
             Konzentrieren Sie sich auf Ihr Geschäft, während wir uns um Ihr
             Hosting kümmern.
           </p>
-          <Button className="bg-primary hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md mb-12">
-            Jetzt anmelden
-          </Button>
+          <Link href="/login">
+            <Button className="bg-primary hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md mb-12">
+              Jetzt anmelden
+            </Button>
+          </Link>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-6">
               <BoltIcon className="text-primary h-8 w-8 mb-4" />
