@@ -8,8 +8,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="h-screen w-full py-24 sm:py-12 md:py-0">
-      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-900">
+    <main className="h-screen w-full pt-24 sm:pt-12 md:pt-0">
+      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-900 pb-24 sm:pb-12 md:pb-0">
         <div className="max-w-3xl px-4 md:px-6 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-text dark:text-gray-100 mb-4">
             Einfaches und zuverlässiges Hosting
