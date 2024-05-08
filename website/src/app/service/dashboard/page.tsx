@@ -47,17 +47,32 @@ export default function Dashboard() {
               </Button>
             </CardFooter>
           </Card>
-          <Card>
-            <CardHeader></CardHeader>
-            <CardContent></CardContent>
-            <CardFooter></CardFooter>
-          </Card>
-          <Card className="flex flex-col justify-between">
+          <Card className="flex flex-col justify-between text-text">
             <CardHeader>
-              <CardTitle className="font-bold text-text">
+              <CardTitle className="font-bold">Server mieten</CardTitle>
+            </CardHeader>
+            <CardContent>
+              Profitieren Sie von erstklassiger Sicherheit, schneller
+              Verarbeitung und zuverlässiger Verfügbarkeit, um eine reibungslose
+              Benutzererfahrung zu gewährleisten.
+            </CardContent>
+            <CardFooter>
+              <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
+                Jetzt mieten
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="flex flex-col justify-between text-text">
+            <CardHeader>
+              <CardTitle className="font-bold">
                 Guthaben: 100,00€
               </CardTitle>
             </CardHeader>
+            <CardContent>
+              Verwalten Sie Ihr Guthaben effizient und transparent über unser
+              Dashboard, um Ihre Ausgaben im Blick zu behalten und Ihre Nutzung
+              flexibel anzupassen.
+            </CardContent>
             <CardFooter>
               <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
                 Jetzt aufladen
