@@ -1,3 +1,3 @@
 export default function ServerManager() {
-  return <div>Server Verwaltung</div>;
+  return <div className="h-full">Server Verwaltung</div>;
 }

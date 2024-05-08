@@ -1,3 +1,3 @@
 export default function Settings() {
-  return <div>Einstellungen</div>;
+  return <div className="h-full">Einstellungen</div>;
 }
