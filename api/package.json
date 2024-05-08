@@ -25,6 +25,8 @@
     "@prisma/client": "^5.13.0",
     "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "ssh2": "^1.15.0"
   }
 }

@@ -11,7 +11,7 @@ export default function ServiceSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="w-1/5 h-screen border-r-2 space-y-2 pt-4 pb-20">
+    <div className="fixed left-0 w-1/5 h-screen border-r-2 space-y-2 pt-4 pb-20">
       <div className="p-2 text-center">
         <h1
           className="font-bold text-3xl cursor-pointer"

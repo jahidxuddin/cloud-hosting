@@ -16,7 +16,7 @@ export default function ServiceLayout({
   return (
     <main className="max-h-screen w-full flex">
       <ServiceSidebar />
-      <div className="w-4/5 h-screen p-8">{children}</div>
+      <div className="w-4/5 min-h-screen p-8 absolute right-0">{children}</div>
     </main>
   );
 }
