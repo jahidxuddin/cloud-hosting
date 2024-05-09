@@ -88,38 +88,6 @@ export default function Settings() {
             </div>
           </CardContent>
         </Card>
-        <Card className="text-text">
-          <CardHeader>
-            <CardTitle>Datenschutz</CardTitle>
-            <CardDescription>
-              Verwalten Sie Ihre Datenschutzeinstellungen.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="flex items-center justify-between space-x-4">
-              <div className="grid gap-1">
-                <p className="text-sm font-medium">Cookies</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Verwalten Sie die Verwendung von Cookies auf dieser Website.
-                </p>
-              </div>
-              <Button size="sm" variant="outline">
-                Verwalten
-              </Button>
-            </div>
-            <div className="flex items-center justify-between space-x-4">
-              <div className="grid gap-1">
-                <p className="text-sm font-medium">Datenschutzrichtlinie</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Lesen Sie unsere Datenschutzrichtlinie.
-                </p>
-              </div>
-              <Link className="text-sm font-medium" href="#">
-                Anzeigen
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
       </section>
     </main>
   );
