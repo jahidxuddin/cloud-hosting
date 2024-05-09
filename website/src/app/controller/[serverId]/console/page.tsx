@@ -1,6 +1,6 @@
 export default function Console() {
   return (
-    <div className="flex-1 overflow-auto">
+    <div className="h-[90vh] overflow-auto">
       <div className="h-full w-full">
         <div className="h-full w-full bg-gray-900 text-white">
           <div className="h-full w-full p-4">

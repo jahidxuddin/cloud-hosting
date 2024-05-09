@@ -1,12 +1,11 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FileIcon, FilterIcon, FolderIcon, ListOrderedIcon, PlusIcon } from "lucide-react";
+import { FileIcon, FolderIcon} from "lucide-react";
 import Link from "next/link";
 
 export default function Files() {
   return (
-    <div className="flex-1 overflow-auto">
+    <div className="min-h-screen flex-1 overflow-auto">
       <div className="container mx-auto py-6 px-4 md:px-6">
         <div className="grid gap-4">
           <div className="flex items-center justify-between">
