@@ -13,22 +13,26 @@ enum Role {
 }
 
 model User {
-  id        String         @id @unique @default(uuid())
-  email     String         @unique
-  password  String 
-  firstName String
-  lastName  String
-  role      Role           @default(CUSTOMER)
-  server    UserOnServer[]
+  id            String         @id @unique @default(uuid())
+  firstName     String
+  lastName      String
+  email         String         @unique
+  password      String
+  role          Role           @default(CUSTOMER)
+  credits       Decimal        @default(0)
+  server        UserOnServer[]
+  notifications Notification[]
 }
 
 model Server {
-  id       String         @id @unique @default(uuid())
-  name     String         @unique
-  ram      String
-  cpuCores String
-  storage  String
-  user     UserOnServer[]
+  id      String         @id @unique @default(uuid())
+  name    String         @unique
+  ram     String
+  cpu     String
+  storage String
+  price   Decimal
+  status  Boolean        @default(false)
+  user    UserOnServer[]
 }
 
 model UserOnServer {
@@ -40,4 +44,12 @@ model UserOnServer {
   assignedBy String
 
   @@id([userId, serverId])
+}
+
+model Notification {
+  id         String   @id @unique @default(uuid())
+  content    String
+  createdtAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
 }
