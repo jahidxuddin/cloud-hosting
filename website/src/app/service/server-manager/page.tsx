@@ -11,9 +11,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  GaugeIcon,
-  ListRestartIcon,
-  MemoryStickIcon,
   PowerIcon,
   SettingsIcon,
   ServerIcon,
@@ -57,6 +54,7 @@ export default function ServerManager() {
                 <TableHead>Status</TableHead>
                 <TableHead>CPU</TableHead>
                 <TableHead>Speicher</TableHead>
+                <TableHead>Arbeitsspeicher</TableHead>
                 <TableHead>Aktionen</TableHead>
               </TableRow>
             </TableHeader>
@@ -71,6 +69,9 @@ export default function ServerManager() {
                 </TableCell>
                 <TableCell>
                   <Progress value={68} />
+                </TableCell>
+                <TableCell>
+                  <Progress value={24} />
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
@@ -98,6 +99,9 @@ export default function ServerManager() {
                   <Progress value={74} />
                 </TableCell>
                 <TableCell>
+                  <Progress value={24} />
+                </TableCell>
+                <TableCell>
                   <div className="flex gap-2">
                     <Button size="icon" variant="ghost">
                       <PowerIcon className="w-4 h-4" />
@@ -115,6 +119,9 @@ export default function ServerManager() {
                 <TableCell className="font-medium">app-01</TableCell>
                 <TableCell>
                   <Badge variant="destructive">Gestoppt</Badge>
+                </TableCell>
+                <TableCell>
+                  <Progress value={0} />
                 </TableCell>
                 <TableCell>
                   <Progress value={0} />
@@ -146,6 +153,9 @@ export default function ServerManager() {
                 </TableCell>
                 <TableCell>
                   <Progress value={76} />
+                </TableCell>
+                <TableCell>
+                  <Progress value={69} />
                 </TableCell>
                 <TableCell>
                   <div className="flex gap-2">
