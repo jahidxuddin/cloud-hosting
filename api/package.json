@@ -13,6 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/cheerio": "^0.22.35",
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.8",
     "concurrently": "^8.2.2",
@@ -25,9 +26,12 @@
     "@prisma/client": "^5.13.0",
     "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "socket.io": "^4.7.5",
     "ssh2": "^1.15.0",
-    "wss": "^3.3.4"
+    "wss": "^3.3.4",
+    "zod": "^3.23.8"
   }
 }
