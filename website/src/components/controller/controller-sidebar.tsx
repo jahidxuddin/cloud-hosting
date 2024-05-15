@@ -43,7 +43,7 @@ export default function ControllerSidebar({ serverId }: { serverId: string }) {
             href={`/controller/${serverId}/settings`}
           >
             <SettingsIcon className="h-4 w-4" />
-            Settings
+            Einstellungen
           </Link>
         </div>
       </div>
