@@ -1,6 +1,7 @@
 import { Router } from "express";
 import z from "zod";
 import prisma from "../lib/prisma-client";
+import { getUserById } from "../service/userService";
 
 const notificationRouter = Router();
 
@@ -12,25 +13,31 @@ const notifcationBodySchema = z.object({
   content: z.string(),
 });
 
-notificationRouter.get("/from-user/:userId", async (req, res) => {
+notificationRouter.get("/read/:userId", async (req, res) => {
   const { userId } = req.params;
 
   userIdSchema.safeParse({ userId });
 
-  const notifcation = await prisma.notification.findFirst({
+  const user = await getUserById(userId);
+
+  if (!user) {
+    res.status(404).json({
+      status: 404,
+      message: `User with id '${userId}' does not exist.`,
+    });
+    return;
+  }
+
+  const notifcation = await prisma.notification.findMany({
     where: {
-      userId: userId,
+      userId,
     },
   });
-
-  if (!notifcation) {
-    
-  }
 
   res.json(notifcation);
 });
 
-notificationRouter.post("/to-user/:userId", async (req, res) => {
+notificationRouter.post("/send/:userId", async (req, res) => {
   const { userId } = req.params;
 
   userIdSchema.safeParse({ userId });
@@ -38,6 +45,16 @@ notificationRouter.post("/to-user/:userId", async (req, res) => {
   const { content } = req.body;
 
   notifcationBodySchema.safeParse({ content });
+
+  const user = await getUserById(userId);
+
+  if (!user) {
+    res.status(404).json({
+      status: 404,
+      message: `User with id '${userId}' does not exist.`,
+    });
+    return;
+  }
 
   const notifcation = await prisma.notification.create({
     data: {
