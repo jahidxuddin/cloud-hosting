@@ -22,10 +22,13 @@ public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    private String firstName;
+    private String lastName;
     @Column(unique = true)
     private String email;
     private String password;
     private String roles;
+    private double credits;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
