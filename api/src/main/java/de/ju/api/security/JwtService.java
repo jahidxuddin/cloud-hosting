@@ -1,6 +1,6 @@
 package de.ju.api.security;
 
-import de.ju.api.entity.AppUser;
+import de.ju.api.user.AppUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;

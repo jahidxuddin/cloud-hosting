@@ -1,6 +1,5 @@
 package de.ju.api.security;
 
-import de.ju.api.service.AppUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,7 +1,5 @@
-package de.ju.api.service;
+package de.ju.api.user;
 
-import de.ju.api.entity.AppUser;
-import de.ju.api.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,5 @@
-package de.ju.api.config;
+package de.ju.api.security;
 
-import de.ju.api.security.JwtAuthFilter;
-import de.ju.api.service.AppUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

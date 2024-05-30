@@ -1,7 +1,6 @@
-package de.ju.api.controller;
+package de.ju.api.user;
 
-import de.ju.api.model.UserResponse;
-import de.ju.api.service.AppUserService;
+import de.ju.api.user.model.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

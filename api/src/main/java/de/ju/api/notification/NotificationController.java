@@ -1,9 +1,8 @@
-package de.ju.api.controller;
+package de.ju.api.notification;
 
 import de.ju.api.model.MessageResponse;
-import de.ju.api.model.NotificationRequest;
-import de.ju.api.model.NotificationResponse;
-import de.ju.api.service.NotificationService;
+import de.ju.api.notification.model.NotificationRequest;
+import de.ju.api.notification.model.NotificationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

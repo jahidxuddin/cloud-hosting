@@ -1,6 +1,5 @@
-package de.ju.api.repository;
+package de.ju.api.user;
 
-import de.ju.api.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

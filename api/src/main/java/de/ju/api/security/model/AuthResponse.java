@@ -1,4 +1,4 @@
-package de.ju.api.model;
+package de.ju.api.security.model;
 
 public record AuthResponse(String token) {
 }

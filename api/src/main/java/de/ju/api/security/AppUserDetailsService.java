@@ -1,7 +1,7 @@
-package de.ju.api.service;
+package de.ju.api.security;
 
-import de.ju.api.entity.AppUser;
-import de.ju.api.repository.AppUserRepository;
+import de.ju.api.user.AppUser;
+import de.ju.api.user.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

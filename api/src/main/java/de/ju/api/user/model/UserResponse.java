@@ -1,4 +1,4 @@
-package de.ju.api.model;
+package de.ju.api.user.model;
 
 import lombok.Builder;
 

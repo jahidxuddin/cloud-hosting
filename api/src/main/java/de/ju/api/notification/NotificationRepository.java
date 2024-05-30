@@ -1,6 +1,5 @@
-package de.ju.api.repository;
+package de.ju.api.notification;
 
-import de.ju.api.entity.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

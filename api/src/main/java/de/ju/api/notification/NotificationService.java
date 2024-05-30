@@ -1,8 +1,7 @@
-package de.ju.api.service;
+package de.ju.api.notification;
 
-import de.ju.api.entity.AppUser;
-import de.ju.api.entity.Notification;
-import de.ju.api.repository.NotificationRepository;
+import de.ju.api.user.AppUser;
+import de.ju.api.user.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
-package de.ju.api.entity;
+package de.ju.api.notification;
 
+import de.ju.api.user.AppUser;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,11 +1,10 @@
-package de.ju.api.controller;
+package de.ju.api.security;
 
-import de.ju.api.entity.AppUser;
-import de.ju.api.model.AuthLoginRequest;
-import de.ju.api.model.AuthRegisterRequest;
-import de.ju.api.model.AuthResponse;
-import de.ju.api.repository.AppUserRepository;
-import de.ju.api.security.JwtService;
+import de.ju.api.security.model.AuthLoginRequest;
+import de.ju.api.security.model.AuthRegisterRequest;
+import de.ju.api.security.model.AuthResponse;
+import de.ju.api.user.AppUser;
+import de.ju.api.user.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
