@@ -5,23 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity(name = "server")
+@Entity(name = "notification")
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Server {
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(unique = true)
-    private String name;
-    private String ram;
-    private String cpu;
-    private String storage;
-    private double price = 0;
-    private boolean status = false;
+    private String content;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user;
 }

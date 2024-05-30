@@ -27,8 +27,8 @@ public class AppUser implements UserDetails {
     @Column(unique = true)
     private String email;
     private String password;
-    private String roles;
-    private double credits;
+    private String roles = "USER";
+    private double credits = 0;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
