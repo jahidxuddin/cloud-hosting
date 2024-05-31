@@ -61,10 +61,15 @@ export async function loginUser(formData: FormData) {
   }
 
   const token = responseValidation.data.token;
-  const thirtyDaysExpiration = 30 * 24 * 60 * 60 * 1000;
-  cookies().set("token", token, {
-    expires: new Date(Date.now() + thirtyDaysExpiration),
-  });
+
+  if (formData.get("remember-me") === "on") {
+    const thirtyDaysExpiration = 30 * 24 * 60 * 60 * 1000;
+    cookies().set("token", token, {
+      expires: new Date(Date.now() + thirtyDaysExpiration),
+    });
+  } else {
+    cookies().set("token", token);
+  }
 
   redirect("/service/dashboard");
 }
