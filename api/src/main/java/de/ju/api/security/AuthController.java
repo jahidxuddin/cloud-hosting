@@ -59,8 +59,8 @@ public class AuthController {
 
         if (userOptional.isEmpty()) {
             return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(new MessageResponse("Benutzer existiert nicht.", 404));
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new MessageResponse("E-Mail oder Passwort ungültig.", 400));
         }
 
         authenticationManager.authenticate(

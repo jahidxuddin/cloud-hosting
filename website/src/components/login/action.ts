@@ -5,45 +5,38 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
-const registerRequestSchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
+const loginRequestSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-const registerResponseSchema = z.object({
+const loginResponseSchema = z.object({
   token: z.string(),
 });
 
-export async function registerUser(formData: FormData) {
+export async function loginUser(formData: FormData) {
   let formValidation;
   try {
-    formValidation = registerRequestSchema.safeParse({
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
+    formValidation = loginRequestSchema.safeParse({
       email: formData.get("email"),
       password: formData.get("password"),
     });
 
-    if (formValidation.error) redirect("/register?error=Validierungsfehler");
+    if (formValidation.error) redirect("/login?error=Valdierungsfehler");
   } catch (error) {
-    redirect("/register?error=Validierungsfehler");
+    redirect("/login?error=Valdierungsfehler");
   }
 
   let data;
   try {
-    const res = await fetch(`${process.env.API_BASE_URL}/auth/register`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName: formValidation.data.firstName,
-        lastName: formValidation.data.lastName,
         email: formValidation.data.email,
         password: formValidation.data.password,
-        roles: "USER",
       }),
     });
 
@@ -51,24 +44,24 @@ export async function registerUser(formData: FormData) {
 
     const messageValidation = messageSchema.safeParse(data);
     if (messageValidation.success) {
-      redirect("/register?error=" + messageValidation.data.message);
+      redirect("/login?error=" + messageValidation.data.message);
     }
   } catch (error) {
     const messageValidation = messageSchema.safeParse(data);
     if (messageValidation.success) {
-      redirect("/register?error=" + messageValidation.data.message);
+      redirect("/login?error=" + messageValidation.data.message);
     }
   }
 
   let responseValidation;
   try {
-    responseValidation = registerResponseSchema.safeParse(data);
+    responseValidation = loginResponseSchema.safeParse(data);
   } catch (error) {
-    redirect("/register?error=Serverfehler");
+    redirect("/login?error=E-Mail oder Passwort ungültig.");
   }
 
   if (responseValidation.error) {
-    redirect("/register?error=Serverfehler");
+    redirect("/login?error=E-Mail oder Passwort ungültig.");
   }
 
   const token = responseValidation.data.token;
