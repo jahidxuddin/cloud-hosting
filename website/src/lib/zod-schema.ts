@@ -5,4 +5,8 @@ const messageSchema = z.object({
   statusCode: z.number(),
 });
 
-export { messageSchema };
+const tokenSchema = z.object({
+  token: z.string(),
+});
+
+export { messageSchema, tokenSchema };

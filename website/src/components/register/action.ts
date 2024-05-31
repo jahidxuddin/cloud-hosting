@@ -1,6 +1,6 @@
 "use server";
 
-import { messageSchema } from "@/lib/zod-schema";
+import { messageSchema, tokenSchema } from "@/lib/zod-schema";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -10,10 +10,6 @@ const registerRequestSchema = z.object({
   lastName: z.string(),
   email: z.string().email(),
   password: z.string().min(8),
-});
-
-const registerResponseSchema = z.object({
-  token: z.string(),
 });
 
 export async function registerUser(formData: FormData) {
@@ -62,7 +58,7 @@ export async function registerUser(formData: FormData) {
 
   let responseValidation;
   try {
-    responseValidation = registerResponseSchema.safeParse(data);
+    responseValidation = tokenSchema.safeParse(data);
   } catch (error) {
     redirect("/register?error=Serverfehler");
   }

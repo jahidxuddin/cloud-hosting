@@ -1,6 +1,6 @@
 "use server";
 
-import { messageSchema } from "@/lib/zod-schema";
+import { messageSchema, tokenSchema } from "@/lib/zod-schema";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -8,10 +8,6 @@ import { z } from "zod";
 const loginRequestSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
-});
-
-const loginResponseSchema = z.object({
-  token: z.string(),
 });
 
 export async function loginUser(formData: FormData) {
@@ -55,7 +51,7 @@ export async function loginUser(formData: FormData) {
 
   let responseValidation;
   try {
-    responseValidation = loginResponseSchema.safeParse(data);
+    responseValidation = tokenSchema.safeParse(data);
   } catch (error) {
     redirect("/login?error=E-Mail oder Passwort ungültig.");
   }
