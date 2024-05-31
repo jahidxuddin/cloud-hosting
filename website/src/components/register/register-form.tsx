@@ -1,26 +1,11 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { FormEvent, useState } from "react";
+import { registerUser } from "./action";
 
-export default function RegisterForm() {
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Vorname:", firstName);
-    console.log("Nachname:", lastName);
-    console.log("E-Mail:", email);
-    console.log("Passwort:", password);
-  };
-
+export default function RegisterForm({ error }: { error: string }) {
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form action={registerUser} method="POST" className="space-y-6">
         <div>
           <label
             htmlFor="firstName"
@@ -32,8 +17,6 @@ export default function RegisterForm() {
             type="text"
             id="firstName"
             name="firstName"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
             autoComplete="given-name"
             placeholder="Max"
             required
@@ -51,8 +34,6 @@ export default function RegisterForm() {
             type="text"
             id="lastName"
             name="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
             autoComplete="family-name"
             placeholder="Mustermann"
             required
@@ -70,8 +51,6 @@ export default function RegisterForm() {
             type="email"
             id="email"
             name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
             placeholder="max.mustermann@example.com"
             required
@@ -89,14 +68,13 @@ export default function RegisterForm() {
             type="password"
             id="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             autoComplete="new-password"
             placeholder="Passwort"
             required
             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:outline-none focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-gray-50 dark:placeholder-gray-400"
           />
         </div>
+        {error && <span className="text-red-500 font-semibold">{error}</span>}
         <div>
           <Button
             type="submit"

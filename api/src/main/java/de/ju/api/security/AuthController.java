@@ -1,11 +1,13 @@
 package de.ju.api.security;
 
+import de.ju.api.model.MessageResponse;
 import de.ju.api.security.model.AuthLoginRequest;
 import de.ju.api.security.model.AuthRegisterRequest;
 import de.ju.api.security.model.AuthResponse;
 import de.ju.api.user.AppUser;
 import de.ju.api.user.AppUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,11 +29,13 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody AuthRegisterRequest request) {
+    public ResponseEntity<?> register(@RequestBody AuthRegisterRequest request) {
         Optional<AppUser> userOptional = userRepository.findByEmail(request.email());
 
         if (userOptional.isPresent()) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new MessageResponse("Benutzer existiert bereits.", 400));
         }
 
         AppUser user = AppUser.builder()
@@ -50,11 +54,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody AuthLoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody AuthLoginRequest request) {
         Optional<AppUser> userOptional = userRepository.findByEmail(request.email());
 
         if (userOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(new MessageResponse("Benutzer existiert nicht.", 404));
         }
 
         authenticationManager.authenticate(
