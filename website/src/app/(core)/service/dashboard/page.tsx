@@ -13,11 +13,11 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
 const MonthlyCostGraph = dynamic(
-  () => import("@/components/service/dashboard/monthly-cost-graph"),
+  () => import("@/components/core/service/dashboard/monthly-cost-graph"),
   { ssr: false }
 );
 const TotalCostGraph = dynamic(
-  () => import("@/components/service/dashboard/total-cost-graph"),
+  () => import("@/components/core/service/dashboard/total-cost-graph"),
   { ssr: false }
 );
 

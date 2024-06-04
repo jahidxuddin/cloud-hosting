@@ -1,4 +1,4 @@
-import ServiceSidebar from "@/components/service/service-sidebar";
+import ServiceSidebar from "@/components/core/service/service-sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
