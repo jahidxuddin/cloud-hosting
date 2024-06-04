@@ -2,7 +2,7 @@ import {
   AlignCenterHorizontalIcon,
   BoltIcon,
   ShieldCheckIcon,
-} from "@/components/icons";
+} from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 

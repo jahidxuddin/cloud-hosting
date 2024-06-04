@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { messageSchema } from "./lib/zod-schema";
+import { messageSchema } from "./lib/schema";
 
 export async function middleware(request: NextRequest) {
   const tokenCookie = request.cookies.get("token");

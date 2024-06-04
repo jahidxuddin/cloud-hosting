@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,7 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import useUser from "@/hooks/useUser";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
 const MonthlyCostGraph = dynamic(
   () => import("@/components/service/dashboard/monthly-cost-graph"),
@@ -18,6 +22,12 @@ const TotalCostGraph = dynamic(
 );
 
 export default function Dashboard() {
+  const { fetchUserData } = useUser();
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
   return (
     <div className="h-full space-y-8">
       <h1 className="font-bold text-4xl ml-2">Hallo, Max!</h1>
@@ -64,9 +74,7 @@ export default function Dashboard() {
           </Card>
           <Card className="flex flex-col justify-between text-text">
             <CardHeader>
-              <CardTitle className="font-bold">
-                Guthaben: 100,00€
-              </CardTitle>
+              <CardTitle className="font-bold">Guthaben: 100,00€</CardTitle>
             </CardHeader>
             <CardContent>
               Verwalten Sie Ihr Guthaben effizient und transparent über unser

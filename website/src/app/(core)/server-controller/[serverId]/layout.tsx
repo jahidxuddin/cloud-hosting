@@ -1,4 +1,4 @@
-import ControllerSidebar from "@/components/controller/controller-sidebar";
+import ControllerSidebar from "@/components/server-controller/controller-sidebar";
 import { Button } from "@/components/ui/button";
 import { StopCircleIcon } from "lucide-react";
 import { notFound } from "next/navigation";

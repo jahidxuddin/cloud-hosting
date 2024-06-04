@@ -20,7 +20,7 @@ import {
 export default function ServerManager() {
   return (
     <main className="space-y-8">
-      <h1 className="font-bold text-4xl ml-2">Serververwaltung</h1>
+      <h1 className="font-bold text-3xl sm:text-4xl ml-2">Serververwaltung</h1>
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="text-text">
           <CardHeader className="flex flex-row items-center justify-between pb-2">

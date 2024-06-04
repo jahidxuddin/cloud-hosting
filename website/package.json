@@ -19,6 +19,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cookies-next": "^4.2.1",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "react": "^18",
@@ -28,7 +29,8 @@
     "tailwindcss-animate": "^1.0.7",
     "xterm": "^5.3.0",
     "xterm-addon-fit": "^0.8.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",

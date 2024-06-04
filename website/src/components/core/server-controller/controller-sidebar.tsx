@@ -15,9 +15,9 @@ export default function ControllerSidebar({ serverId }: { serverId: string }) {
         <Link
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-900",
-            pathname === `/controller/${serverId}/console` && "bg-gray-900"
+            pathname === `/server-controller/${serverId}/console` && "bg-gray-900"
           )}
-          href={`/controller/${serverId}/console`}
+          href={`/server-controller/${serverId}/console`}
         >
           <TerminalIcon className="h-4 w-4" />
           Konsole
@@ -25,9 +25,9 @@ export default function ControllerSidebar({ serverId }: { serverId: string }) {
         <Link
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-900",
-            pathname === `/controller/${serverId}/files` && "bg-gray-900"
+            pathname === `/server-controller/${serverId}/files` && "bg-gray-900"
           )}
-          href={`/controller/${serverId}/files`}
+          href={`/server-controller/${serverId}/files`}
         >
           <FileBoxIcon className="h-4 w-4" />
           Dateien
@@ -38,9 +38,9 @@ export default function ControllerSidebar({ serverId }: { serverId: string }) {
           <Link
             className={cn(
               "flex items-center gap-2 rounded-md px-6 py-2 text-sm font-medium hover:bg-gray-900",
-              pathname === `/controller/${serverId}/settings` && "bg-gray-900"
+              pathname === `/server-controller/${serverId}/settings` && "bg-gray-900"
             )}
-            href={`/controller/${serverId}/settings`}
+            href={`/server-controller/${serverId}/settings`}
           >
             <SettingsIcon className="h-4 w-4" />
             Einstellungen

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { registerUser } from "./action";
 
 export default function RegisterForm({ error }: { error: string }) {
