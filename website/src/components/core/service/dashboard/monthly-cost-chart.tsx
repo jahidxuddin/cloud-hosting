@@ -48,7 +48,7 @@ const data = [
   },
 ];
 
-export default function MonthlyCostGraph() {
+export default function MonthlyCostChart() {
   return (
     <BarChart width={500} height={300} data={data}>
       <CartesianGrid strokeDasharray="3 3" />

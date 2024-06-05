@@ -56,7 +56,7 @@ const data = [
   },
 ];
 
-export default function TotalCostGraph() {
+export default function TotalCostChart() {
   return (
     <LineChart width={500} height={300} data={data}>
       <CartesianGrid strokeDasharray="3 3" />

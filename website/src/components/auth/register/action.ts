@@ -1,6 +1,6 @@
 "use server";
 
-import { messageSchema, tokenSchema } from "@/lib/zod-schema";
+import { messageSchema, tokenSchema } from "@/lib/schema";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";

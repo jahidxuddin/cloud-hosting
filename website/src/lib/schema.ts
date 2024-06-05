@@ -18,4 +18,12 @@ const userSchema = z.object({
   credits: z.number(),
 });
 
-export { messageSchema, tokenSchema, userSchema };
+const notificationObjectSchema = z.object({
+  uuid: z.string().uuid(),
+  content: z.string(),
+  createdAt: z.date(),
+});
+
+const notificationsArraySchema = z.array(notificationObjectSchema);
+
+export { messageSchema, tokenSchema, userSchema, notificationsArraySchema };

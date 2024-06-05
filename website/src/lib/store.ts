@@ -1,5 +1,11 @@
 import { create } from "zustand";
 
+type Notification = {
+  uuid: string;
+  content: string;
+  createdAt: Date;
+};
+
 type User = {
   uuid: string;
   firstName: string;
@@ -7,10 +13,12 @@ type User = {
   email: string;
   roles: string;
   credits: number;
+  notifications: Notification[];
 };
 
 type UserActions = {
   setUser: (user: User) => void;
+  setNotifications: (notifications: Notification[]) => void;
 };
 
 export const useUserStore = create<User & UserActions>((set) => ({
@@ -20,5 +28,7 @@ export const useUserStore = create<User & UserActions>((set) => ({
   email: "",
   roles: "",
   credits: 0,
+  notifications: [],
   setUser: (user: User) => set(user),
+  setNotifications: (notifications: Notification[]) => set({ notifications }),
 }));

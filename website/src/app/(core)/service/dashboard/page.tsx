@@ -1,23 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import BuyCreditsBanner from "@/components/core/service/dashboard/buy-credits-banner";
+import DashboardTitle from "@/components/core/service/dashboard/dashboard-title";
+import NotificationBanner from "@/components/core/service/dashboard/notification-banner";
+import RentServerBanner from "@/components/core/service/dashboard/rent-server-banner";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useUser from "@/hooks/useUser";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
-const MonthlyCostGraph = dynamic(
-  () => import("@/components/core/service/dashboard/monthly-cost-graph"),
+const MonthlyCostChart = dynamic(
+  () => import("@/components/core/service/dashboard/monthly-cost-chart"),
   { ssr: false }
 );
-const TotalCostGraph = dynamic(
-  () => import("@/components/core/service/dashboard/total-cost-graph"),
+const TotalCostChart = dynamic(
+  () => import("@/components/core/service/dashboard/total-cost-chart"),
   { ssr: false }
 );
 
@@ -30,75 +27,26 @@ export default function Dashboard() {
 
   return (
     <div className="h-full space-y-8">
-      <h1 className="font-bold text-4xl ml-2">Hallo, Max!</h1>
+      <DashboardTitle />
       <div className="space-y-3">
         <div className="grid grid-cols-3 gap-3">
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-bold text-text">
-                Benachrichtungen
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-text text-sm space-y-3">
-              <div className="flex flex-col">
-                <span>
-                  Das Hosting für Server "Homepage" wird morgen ablaufen
-                </span>
-                <span className="font-semibold">{"Von:"} 8. Mai</span>
-              </div>
-              <div className="flex flex-col">
-                <span>Server "Homepage" läuft auf höchster Auslastung</span>
-                <span className="font-semibold">{"Von:"} 5. Mai</span>
-              </div>
-            </CardContent>
-            <CardFooter>
-              <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
-                Mehr anzeigen
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="flex flex-col justify-between text-text">
-            <CardHeader>
-              <CardTitle className="font-bold">Server mieten</CardTitle>
-            </CardHeader>
-            <CardContent>
-              Profitieren Sie von erstklassiger Sicherheit, schneller
-              Verarbeitung und zuverlässiger Verfügbarkeit, um eine reibungslose
-              Benutzererfahrung zu gewährleisten.
-            </CardContent>
-            <CardFooter>
-              <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
-                Jetzt mieten
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="flex flex-col justify-between text-text">
-            <CardHeader>
-              <CardTitle className="font-bold">Guthaben: 100,00€</CardTitle>
-            </CardHeader>
-            <CardContent>
-              Verwalten Sie Ihr Guthaben effizient und transparent über unser
-              Dashboard, um Ihre Ausgaben im Blick zu behalten und Ihre Nutzung
-              flexibel anzupassen.
-            </CardContent>
-            <CardFooter>
-              <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
-                Jetzt aufladen
-              </Button>
-            </CardFooter>
-          </Card>
+          <NotificationBanner />
+          <RentServerBanner />
+          <BuyCreditsBanner />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-bold text-text">
-                Gesamtkosten
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-3">
-              <TotalCostGraph />
-            </CardContent>
-          </Card>
+          <Suspense fallback={<span className="text-4xl font-bold">Loading...</span>}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-bold text-text">
+                  Gesamtkosten
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-3">
+                <TotalCostChart />
+              </CardContent>
+            </Card>
+          </Suspense>
           <Card>
             <CardHeader>
               <CardTitle className="font-bold text-text">
@@ -106,7 +54,7 @@ export default function Dashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-3">
-              <MonthlyCostGraph />
+              <MonthlyCostChart />
             </CardContent>
           </Card>
         </div>
