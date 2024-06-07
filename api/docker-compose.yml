@@ -7,10 +7,10 @@ services:
       - "3306:3306"
     restart: always
     environment:
-      MYSQL_DATABASE:
-      MYSQL_ROOT_PASSWORD:
-      MYSQL_USER:
-      MYSQL_PASSWORD:
+      MYSQL_DATABASE: datenbankprojekt
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: password
     volumes:
       - data_db:/var/lib/mysql
 

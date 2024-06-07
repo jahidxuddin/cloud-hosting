@@ -71,6 +71,7 @@ export async function registerUser(formData: FormData) {
   const thirtyDaysExpiration = 30 * 24 * 60 * 60 * 1000;
   cookies().set("token", token, {
     expires: new Date(Date.now() + thirtyDaysExpiration),
+    sameSite: true
   });
 
   redirect("/service/dashboard");
