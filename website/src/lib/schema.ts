@@ -25,13 +25,25 @@ const updateAccountDataRequestSchema = z.object({
   password: z.string(),
 });
 
-const notificationObjectSchema = z.object({
+const serverSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string(),
+  ram: z.number(),
+  cpu: z.number(),
+  storage: z.number(),
+  price: z.number(),
+  status: z.boolean(),
+});
+
+const serverArraySchema = z.array(serverSchema);
+
+const notificationSchema = z.object({
   uuid: z.string().uuid(),
   content: z.string(),
   createdAt: z.date(),
 });
 
-const notificationsArraySchema = z.array(notificationObjectSchema);
+const notificationsArraySchema = z.array(notificationSchema);
 
 export {
   messageSchema,
@@ -39,4 +51,5 @@ export {
   userSchema,
   updateAccountDataRequestSchema,
   notificationsArraySchema,
+  serverArraySchema,
 };

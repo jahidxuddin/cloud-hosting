@@ -19,9 +19,9 @@ public class Server {
     private UUID id;
     @Column(unique = true)
     private String name;
-    private String ram;
-    private String cpu;
-    private String storage;
+    private double ram;
+    private double cpu;
+    private double storage;
     private double price = 0;
     private boolean status = false;
 }

@@ -1,6 +1,7 @@
 package de.ju.api.userServerRelation;
 
 import de.ju.api.server.Server;
+import de.ju.api.user.AppUser;
 import de.ju.api.user.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +20,17 @@ public class UserServerService {
         userService.findUserById(userId);
 
         return userServerRepository.findAllByUserId(userId)
+                .stream()
+                .map(UserServerRelation::getServer)
+                .toList();
+    }
+
+    public List<Server> getAllServerFromUser(String token) throws UsernameNotFoundException {
+        AppUser user = userService.findUserByToken(token);
+
+        userService.findUserById(user.getId());
+
+        return userServerRepository.findAllByUserId(user.getId())
                 .stream()
                 .map(UserServerRelation::getServer)
                 .toList();
