@@ -18,6 +18,13 @@ const userSchema = z.object({
   credits: z.number(),
 });
 
+const updateAccountDataRequestSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+});
+
 const notificationObjectSchema = z.object({
   uuid: z.string().uuid(),
   content: z.string(),
@@ -26,4 +33,10 @@ const notificationObjectSchema = z.object({
 
 const notificationsArraySchema = z.array(notificationObjectSchema);
 
-export { messageSchema, tokenSchema, userSchema, notificationsArraySchema };
+export {
+  messageSchema,
+  tokenSchema,
+  userSchema,
+  updateAccountDataRequestSchema,
+  notificationsArraySchema,
+};

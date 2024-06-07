@@ -1,7 +1,15 @@
-import ControllerSidebar from "@/components/server-controller/controller-sidebar";
+import ControllerSidebar from "@/components/core/server-controller/controller-sidebar";
 import { Button } from "@/components/ui/button";
 import { StopCircleIcon } from "lucide-react";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Servercontroller",
+    default: "Servercontroller",
+  },
+};
 
 export default function ControllerLayout({
   children,

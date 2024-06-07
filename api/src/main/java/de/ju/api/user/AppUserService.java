@@ -1,13 +1,17 @@
 package de.ju.api.user;
 
 import de.ju.api.security.JwtService;
+import de.ju.api.user.exception.UserAlreadyExistsException;
+import de.ju.api.user.model.AccountRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -17,6 +21,7 @@ public class AppUserService {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
     private final AppUserRepository appUserRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<AppUser> findAllUser() {
         return repository.findAll();
@@ -40,5 +45,27 @@ public class AppUserService {
         }
 
         return appUserRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Benutzer existiert nicht."));
+    }
+
+    public String updateUserAccountByToken(String token, AccountRequest account) throws RuntimeException {
+        AppUser user = findUserByToken(token);
+
+        if (!user.getEmail().equals(account.email())) {
+            Optional<AppUser> userOptional = repository.findByEmail(account.email());
+            if (userOptional.isPresent()) {
+                throw new UserAlreadyExistsException("Benutzer existiert bereits.");
+            }
+        }
+
+        user.setFirstName(account.firstName());
+        user.setLastName(account.lastName());
+        user.setEmail(account.email());
+        if (!account.password().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(account.password()));
+        }
+
+        AppUser updatedUser = repository.save(user);
+
+        return jwtService.generateToken(updatedUser);
     }
 }

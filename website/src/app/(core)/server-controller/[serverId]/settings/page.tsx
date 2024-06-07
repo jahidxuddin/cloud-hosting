@@ -12,13 +12,13 @@ import { Input } from "@/components/ui/input";
 
 export default function ServerSettings() {
   return (
-    <div className="h-full grid gap-6 p-6">
-      <Card className="bg-gray-900 border-gray-800 text-white">
+    <div className="h-[90vh] grid gap-6 p-6">
+      <Card className="flex flex-col bg-gray-900 border-gray-800 text-white">
         <CardHeader>
           <CardTitle>Servername</CardTitle>
           <CardDescription>Ändere den Namen deines Servers.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex-1">
           <form>
             <Input placeholder="Servername" />
           </form>
@@ -27,14 +27,14 @@ export default function ServerSettings() {
           <Button className="border border-gray-800">Speichern</Button>
         </CardFooter>
       </Card>
-      <Card className="bg-gray-900 border-gray-800 text-white">
+      <Card className="flex flex-col bg-gray-900 border-gray-800 text-white">
         <CardHeader>
           <CardTitle>Server kündigen</CardTitle>
           <CardDescription>
             Lösche deinen Server und alle dazugehörigen Daten endgültig.
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex-1">
           <div className="flex flex-col gap-4">
             <p className="text-gray-500 dark:text-gray-400">
               Bist du sicher, dass du deinen Server kündigen möchtest? Diese

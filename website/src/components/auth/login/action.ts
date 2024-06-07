@@ -66,9 +66,12 @@ export async function loginUser(formData: FormData) {
     const thirtyDaysExpiration = 30 * 24 * 60 * 60 * 1000;
     cookies().set("token", token, {
       expires: new Date(Date.now() + thirtyDaysExpiration),
+      sameSite: true,
     });
   } else {
-    cookies().set("token", token);
+    cookies().set("token", token, {
+      sameSite: true,
+    });
   }
 
   redirect("/service/dashboard");
