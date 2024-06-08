@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Button } from "../../ui/button";
 import { loginUser } from "./action";
+import { Button } from "@/components/ui/button";
 
 export default function LoginForm({ error }: { error: string }) {
   return (

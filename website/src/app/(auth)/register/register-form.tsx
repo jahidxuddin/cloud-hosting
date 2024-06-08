@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Button } from "../../ui/button";
-import { registerUser } from "./action";
+import { registerUser } from "../../../app/(auth)/register/action";
+import { Button } from "@/components/ui/button";
 
 export default function RegisterForm({ error }: { error: string }) {
   return (

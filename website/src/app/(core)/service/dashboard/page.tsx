@@ -1,20 +1,20 @@
 "use client";
 
-import BuyCreditsBanner from "@/components/core/service/dashboard/buy-credits-banner";
-import DashboardTitle from "@/components/core/service/dashboard/dashboard-title";
-import NotificationBanner from "@/components/core/service/dashboard/notification-banner";
-import RentServerBanner from "@/components/core/service/dashboard/rent-server-banner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import useUser from "@/hooks/useUser";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
+import DashboardTitle from "./dashboard-title";
+import NotificationBanner from "./notification-banner";
+import RentServerBanner from "./rent-server-banner";
+import BuyCreditsBanner from "./buy-credits-banner";
 
 const MonthlyCostChart = dynamic(
-  () => import("@/components/core/service/dashboard/monthly-cost-chart"),
+  () => import("@/app/(core)/service/dashboard/monthly-cost-chart"),
   { ssr: false }
 );
 const TotalCostChart = dynamic(
-  () => import("@/components/core/service/dashboard/total-cost-chart"),
+  () => import("@/app/(core)/service/dashboard/total-cost-chart"),
   { ssr: false }
 );
 

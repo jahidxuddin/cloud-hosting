@@ -1,8 +1,8 @@
-import ControllerSidebar from "@/components/core/server-controller/controller-sidebar";
 import { Button } from "@/components/ui/button";
 import { StopCircleIcon } from "lucide-react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ControllerSidebar from "./controller-sidebar";
 
 export const metadata: Metadata = {
   title: {

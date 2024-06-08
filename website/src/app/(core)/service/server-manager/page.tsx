@@ -1,4 +1,3 @@
-import PowerButton from "@/components/core/service/server-manager/power-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,6 +21,7 @@ import {
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import PowerButton from "./power-button";
 
 export default async function ServerManager() {
   const tokenCookie = cookies().get("token");

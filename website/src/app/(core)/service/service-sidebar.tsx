@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { LayoutDashboardIcon, ServerIcon, SettingsIcon } from "lucide-react";
-import { Separator } from "../../ui/separator";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { Separator } from "@/components/ui/separator";
 
 export default function ServiceSidebar() {
   const pathname = usePathname();
