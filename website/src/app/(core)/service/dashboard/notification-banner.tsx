@@ -11,6 +11,9 @@ import {
 import useNotification from "@/hooks/useNotification";
 import { useUserStore } from "@/lib/store";
 import { useEffect } from "react";
+import { differenceInDays } from "date-fns";
+import NotificationText from "./notification-text";
+import NotificationModal from "./notification-modal";
 
 export default function NotificationBanner() {
   const { fetchNotificationsFromUser } = useNotification();
@@ -20,30 +23,30 @@ export default function NotificationBanner() {
     fetchNotificationsFromUser();
   }, []);
 
+  const limitedNotifications = notifications.slice(0, 2);
+
   return (
     <Card className="flex flex-col">
       <CardHeader>
         <CardTitle className="font-bold text-text">Benachrichtungen</CardTitle>
       </CardHeader>
-      <CardContent className="text-text text-sm space-y-3 flex-1">
+      <CardContent className="flex-1 space-y-3 text-sm text-text">
         {notifications.length > 0 ? (
-          notifications.map((notification) => (
-            <div key={notification.uuid} className="flex flex-col">
-              <span>{notification.content}</span>
-              <span className="font-semibold">
-                {"Von:"} {notification.createdAt.toLocaleDateString()}
-              </span>
-            </div>
+          limitedNotifications.map((notification) => (
+            <NotificationText
+              key={notification.id}
+              notification={notification}
+            />
           ))
         ) : (
-          <span className="text-center">Zurzeit hast du keine Benachrichtungen.</span>
+          <span className="text-center">
+            Zurzeit hast du keine Benachrichtungen.
+          </span>
         )}
       </CardContent>
       {notifications.length > 2 && (
         <CardFooter>
-          <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
-            Mehr anzeigen
-          </Button>
+          <NotificationModal notifications={notifications} />
         </CardFooter>
       )}
     </Card>

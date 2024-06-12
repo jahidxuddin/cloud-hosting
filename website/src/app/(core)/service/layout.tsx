@@ -14,9 +14,11 @@ export default function ServiceLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="max-h-screen w-full flex">
+    <main className="flex max-h-screen w-full">
       <ServiceSidebar />
-      <div className="w-full lg:w-4/5 min-h-screen p-8 absolute right-0">{children}</div>
+      <div className="absolute right-0 min-h-screen w-full p-8 lg:w-4/5">
+        {children}
+      </div>
     </main>
   );
 }

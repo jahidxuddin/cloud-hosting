@@ -38,12 +38,22 @@ const serverSchema = z.object({
 const serverArraySchema = z.array(serverSchema);
 
 const notificationSchema = z.object({
-  uuid: z.string().uuid(),
+  id: z.string().uuid(),
   content: z.string(),
-  createdAt: z.date(),
+  createdAt: z.string(),
 });
 
 const notificationsArraySchema = z.array(notificationSchema);
+
+const pricingSchema = z.object({
+  id: z.string().uuid(),
+  title: z.string(),
+  details: z.string(),
+  price: z.number(),
+  createdAt: z.string(),
+});
+
+const pricingArraySchema = z.array(pricingSchema);
 
 export {
   messageSchema,
@@ -52,4 +62,5 @@ export {
   updateAccountDataRequestSchema,
   notificationsArraySchema,
   serverArraySchema,
+  pricingArraySchema
 };

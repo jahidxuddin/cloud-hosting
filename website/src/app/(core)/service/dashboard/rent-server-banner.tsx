@@ -1,5 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import RentServerModal from "./rent-server-modal";
 
 export default function RentServerBanner() {
   return (
@@ -13,9 +19,7 @@ export default function RentServerBanner() {
         gewährleisten.
       </CardContent>
       <CardFooter>
-        <Button className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
-          Jetzt mieten
-        </Button>
+        <RentServerModal />
       </CardFooter>
     </Card>
   );

@@ -40,9 +40,9 @@ export default async function ServerManager() {
         },
         next: {
           revalidate: 10,
-          tags: ["servers"]
+          tags: ["servers"],
         },
-      }
+      },
     );
 
     data = await res.json();
@@ -63,14 +63,14 @@ export default async function ServerManager() {
 
   return (
     <main className="space-y-8">
-      <h1 className="font-bold text-3xl sm:text-4xl ml-2">Serververwaltung</h1>
+      <h1 className="ml-2 text-3xl font-bold sm:text-4xl">Serververwaltung</h1>
       <div className="grid gap-4 md:grid-cols-2">
         <Card className="text-text">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">
               Gesamtzahl an Servern
             </CardTitle>
-            <ServerIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+            <ServerIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{serverCount}</div>
@@ -81,7 +81,7 @@ export default async function ServerManager() {
             <CardTitle className="text-sm font-medium">
               Laufende Server
             </CardTitle>
-            <PowerIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+            <PowerIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{onlineServerCount}</div>
@@ -127,17 +127,20 @@ export default async function ServerManager() {
                       </TableCell>
                       <TableCell>
                         <div className="flex gap-2">
-                          <PowerButton serverId={server.id} currentStatus={server.status} />
+                          <PowerButton
+                            serverId={server.id}
+                            currentStatus={server.status}
+                          />
                           <Link
                             href={`/server-controller/${server.id}/console`}
                           >
                             <Button size="icon" variant="ghost">
-                              <TerminalIcon className="w-4 h-4" />
+                              <TerminalIcon className="h-4 w-4" />
                             </Button>
                           </Link>
                           <Link href={`/server-controller/${server.id}/files`}>
                             <Button size="icon" variant="ghost">
-                              <FileBoxIcon className="w-4 h-4" />
+                              <FileBoxIcon className="h-4 w-4" />
                             </Button>
                           </Link>
                         </div>

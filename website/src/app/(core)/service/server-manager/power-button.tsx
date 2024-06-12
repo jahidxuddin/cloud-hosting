@@ -31,7 +31,7 @@ export default function PowerButton({
           body: JSON.stringify({
             status: !currentStatus,
           }),
-        }
+        },
       );
 
       data = await res.json();
@@ -47,7 +47,7 @@ export default function PowerButton({
 
   return (
     <Button onClick={handleClick} size="icon" variant="ghost">
-      <PowerIcon className="w-4 h-4" />
+      <PowerIcon className="h-4 w-4" />
     </Button>
   );
 }

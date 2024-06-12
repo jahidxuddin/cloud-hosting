@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
-type Notification = {
-  uuid: string;
+export type Notification = {
+  id: string;
   content: string;
-  createdAt: Date;
+  createdAt: string;
 };
 
 type User = {

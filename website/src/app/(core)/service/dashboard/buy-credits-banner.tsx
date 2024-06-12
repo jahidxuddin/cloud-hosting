@@ -25,7 +25,10 @@ export default function BuyCreditsBanner() {
         flexibel anzupassen.
       </CardContent>
       <CardFooter>
-        <Button disabled className="bg-primary hover:bg-blue-600 text-white py-3 w-full rounded-md uppercase font-bold">
+        <Button
+          disabled
+          className="w-full rounded-md bg-primary py-3 font-bold uppercase text-white hover:bg-blue-600"
+        >
           Jetzt aufladen
         </Button>
       </CardFooter>

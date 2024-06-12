@@ -19,10 +19,6 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    if (request.nextUrl.pathname === "/") {
-      return NextResponse.redirect(new URL("/service/dashboard", request.url));
-    }
-
     return NextResponse.next();
   } catch (error) {
     return NextResponse.redirect(new URL("/login", request.url));
@@ -30,5 +26,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/service/:path*", "/server-controls/:path*", "/"],
+  matcher: ["/service/:path*", "/server-controls/:path*"],
 };

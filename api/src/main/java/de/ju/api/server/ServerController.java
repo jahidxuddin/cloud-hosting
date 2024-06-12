@@ -1,7 +1,10 @@
 package de.ju.api.server;
 
+import de.ju.api.exception.EntityAlreadyExistsException;
+import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.model.MessageResponse;
 import de.ju.api.server.model.ServerStatusRequest;
+import de.ju.api.server.model.ServerRentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +18,24 @@ import java.util.UUID;
 public class ServerController {
     private final ServerService serverService;
 
+    @PostMapping("/rent")
+    public ResponseEntity<MessageResponse> rentServer(@RequestBody ServerRentRequest request) {
+        try {
+            serverService.rentServer(request);
+            return ResponseEntity.ok(new MessageResponse("Server erfolgreich gemietet.", HttpStatus.OK));
+        } catch (EntityNotExistsException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
+        } catch (EntityAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(e.getMessage(), HttpStatus.BAD_REQUEST));
+        }
+    }
+
     @PutMapping("/status/{serverId}")
     public ResponseEntity<MessageResponse> updateServerStatus(@PathVariable UUID serverId, @RequestBody ServerStatusRequest request) {
         try {
             serverService.updateServerStatus(serverId, request);
             return ResponseEntity.ok(new MessageResponse("Serverstatus erfolgreich geupdated.", HttpStatus.OK));
-        } catch (ServerNotFoundException e) {
+        } catch (EntityNotExistsException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
         }
     }

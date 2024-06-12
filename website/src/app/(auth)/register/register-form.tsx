@@ -9,7 +9,7 @@ export default function RegisterForm({ error }: { error: string }) {
         <div>
           <label
             htmlFor="firstName"
-            className="block text-sm font-medium text-text dark:text-gray-300 mb-1"
+            className="mb-1 block text-sm font-medium text-text dark:text-gray-300"
           >
             Vorname
           </label>
@@ -26,7 +26,7 @@ export default function RegisterForm({ error }: { error: string }) {
         <div>
           <label
             htmlFor="lastName"
-            className="block text-sm font-medium text-text dark:text-gray-300 mb-1"
+            className="mb-1 block text-sm font-medium text-text dark:text-gray-300"
           >
             Nachname
           </label>
@@ -43,7 +43,7 @@ export default function RegisterForm({ error }: { error: string }) {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-text dark:text-gray-300 mb-1"
+            className="mb-1 block text-sm font-medium text-text dark:text-gray-300"
           >
             E-Mail Adresse
           </label>
@@ -60,7 +60,7 @@ export default function RegisterForm({ error }: { error: string }) {
         <div>
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-text dark:text-gray-300 mb-1"
+            className="mb-1 block text-sm font-medium text-text dark:text-gray-300"
           >
             Passwort
           </label>
@@ -74,11 +74,11 @@ export default function RegisterForm({ error }: { error: string }) {
             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:outline-none focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-gray-50 dark:placeholder-gray-400"
           />
         </div>
-        {error && <span className="text-red-500 font-semibold">{error}</span>}
+        {error && <span className="font-semibold text-red-500">{error}</span>}
         <div>
           <Button
             type="submit"
-            className="flex w-full justify-center rounded-md border border-transparent bg-primary hover:bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm"
+            className="flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-600"
           >
             Registrieren
           </Button>

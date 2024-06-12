@@ -10,16 +10,16 @@ export default function ServiceSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="hidden lg:block fixed left-0 w-1/5 h-screen border-r-2 space-y-2 pt-4 pb-20">
+    <div className="fixed left-0 hidden h-screen w-1/5 space-y-2 border-r-2 pb-20 pt-4 lg:block">
       <div className="p-2 text-center">
         <h1
-          className="font-bold text-xl lg:text-xl 2xl:text-3xl cursor-pointer"
+          className="cursor-pointer text-xl font-bold lg:text-xl 2xl:text-3xl"
           onClick={() => window.location.reload()}
         >
           Hosting Anbieter
         </h1>
       </div>
-      <div className="flex flex-col justify-between h-full">
+      <div className="flex h-full flex-col justify-between">
         <div className="space-y-2 px-7">
           <Link
             href="/service/dashboard"
@@ -27,7 +27,7 @@ export default function ServiceSidebar() {
               "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-gray-900 dark:hover:text-gray-50",
               pathname === "/service/dashboard"
                 ? "text-gray-900 dark:text-gray-50"
-                : "text-gray-500 dark:text-gray-400"
+                : "text-gray-500 dark:text-gray-400",
             )}
           >
             <LayoutDashboardIcon />
@@ -39,7 +39,7 @@ export default function ServiceSidebar() {
               "flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-gray-900 dark:hover:text-gray-50",
               pathname === "/service/server-manager"
                 ? "text-gray-900 dark:text-gray-50"
-                : "text-gray-500 dark:text-gray-400"
+                : "text-gray-500 dark:text-gray-400",
             )}
           >
             <ServerIcon />
@@ -54,7 +54,7 @@ export default function ServiceSidebar() {
               "flex items-center gap-3 rounded-lg px-10 py-2 transition-all hover:text-gray-900 dark:hover:text-gray-50",
               pathname === "/service/settings"
                 ? "text-gray-900 dark:text-gray-50"
-                : "text-gray-500 dark:text-gray-400"
+                : "text-gray-500 dark:text-gray-400",
             )}
           >
             <SettingsIcon />

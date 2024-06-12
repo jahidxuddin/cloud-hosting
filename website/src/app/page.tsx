@@ -5,28 +5,35 @@ import {
 } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const tokenCookie = cookies().get("token");
+  if (tokenCookie && tokenCookie.value) {
+    redirect("/service/dashboard");
+  }
+
   return (
     <main className="h-screen w-full pt-24 sm:pt-12 md:pt-0">
-      <div className="flex flex-col items-center justify-center h-screen dark:bg-gray-900 pb-24 sm:pb-12 md:pb-0">
-        <div className="max-w-3xl px-4 md:px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-text dark:text-gray-100 mb-4">
+      <div className="flex h-screen flex-col items-center justify-center pb-24 dark:bg-gray-900 sm:pb-12 md:pb-0">
+        <div className="max-w-3xl px-4 text-center md:px-6">
+          <h1 className="mb-4 text-4xl font-bold text-text dark:text-gray-100 md:text-6xl">
             Einfaches und zuverlässiges Hosting
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8">
+          <p className="mb-8 text-lg text-gray-600 dark:text-gray-400 md:text-xl">
             Konzentrieren Sie sich auf Ihr Geschäft, während wir uns um Ihr
             Hosting kümmern.
           </p>
           <Link href="/login">
-            <Button className="bg-primary hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md mb-12">
+            <Button className="mb-12 rounded-md bg-primary px-6 py-3 font-medium text-white hover:bg-blue-600">
               Jetzt anmelden
             </Button>
           </Link>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-6">
-              <BoltIcon className="text-primary h-8 w-8 mb-4" />
-              <h3 className="text-lg font-medium text-text dark:text-gray-100 mb-2">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div className="rounded-md bg-white p-6 shadow-md dark:bg-gray-800">
+              <BoltIcon className="mb-4 h-8 w-8 text-primary" />
+              <h3 className="mb-2 text-lg font-medium text-text dark:text-gray-100">
                 Blitzschnell
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
@@ -34,9 +41,9 @@ export default function Home() {
                 sich befinden.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-6">
-              <ShieldCheckIcon className="text-primary h-8 w-8 mb-4" />
-              <h3 className="text-lg font-medium text-text dark:text-gray-100 mb-2">
+            <div className="rounded-md bg-white p-6 shadow-md dark:bg-gray-800">
+              <ShieldCheckIcon className="mb-4 h-8 w-8 text-primary" />
+              <h3 className="mb-2 text-lg font-medium text-text dark:text-gray-100">
                 Sicher
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
@@ -44,9 +51,9 @@ export default function Home() {
                 höchste Sicherheit.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-6">
-              <AlignCenterHorizontalIcon className="text-primary h-8 w-8 mb-4" />
-              <h3 className="text-lg font-medium text-text dark:text-gray-100 mb-2">
+            <div className="rounded-md bg-white p-6 shadow-md dark:bg-gray-800">
+              <AlignCenterHorizontalIcon className="mb-4 h-8 w-8 text-primary" />
+              <h3 className="mb-2 text-lg font-medium text-text dark:text-gray-100">
                 Skalierbar
               </h3>
               <p className="text-gray-600 dark:text-gray-400">

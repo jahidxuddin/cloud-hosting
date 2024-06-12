@@ -1,10 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import { loginUser } from "./action";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Loader2Icon } from "lucide-react";
 
 export default function LoginForm({ error }: { error: string }) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    await loginUser(new FormData(e.currentTarget));
+  };
+
   return (
-    <form action={loginUser} method="POST" className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label
           className="block text-sm font-medium text-text dark:text-gray-300"
@@ -43,7 +55,7 @@ export default function LoginForm({ error }: { error: string }) {
           />
         </div>
       </div>
-      {error && <span className="text-red-500 font-semibold">{error}</span>}
+      {error && <span className="font-semibold text-red-500">{error}</span>}
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <input
@@ -70,9 +82,11 @@ export default function LoginForm({ error }: { error: string }) {
       </div>
       <div>
         <Button
-          className="flex w-full justify-center rounded-md border border-transparent bg-primary hover:bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm"
           type="submit"
+          className="flex w-full justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-600"
+          disabled={isLoading}
         >
+          {isLoading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
           Anmelden
         </Button>
       </div>

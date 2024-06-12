@@ -1,12 +1,26 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FileIcon, FolderIcon} from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { FileIcon, FolderIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Files() {
   return (
     <div className="min-h-screen flex-1 overflow-auto">
-      <div className="container mx-auto py-6 px-4 md:px-6">
+      <div className="container mx-auto px-4 py-6 md:px-6">
         <div className="grid gap-4">
           <div className="flex items-center justify-between">
             <Breadcrumb>
@@ -20,7 +34,9 @@ export default function Files() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage className="text-slate-50">Project Files</BreadcrumbPage>
+                  <BreadcrumbPage className="text-slate-50">
+                    Project Files
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

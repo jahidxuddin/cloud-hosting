@@ -16,10 +16,10 @@ export default function Login({
     <main className="flex min-h-[100dvh] items-center justify-center bg-background px-4 py-12 dark:bg-gray-900">
       <div className="mx-auto w-full max-w-md space-y-8">
         <div className="space-y-4 text-center">
-          <h2 className="mt-6 text-center text-4xl md:text-6xl font-bold tracking-tight text-text dark:text-gray-50">
+          <h2 className="mt-6 text-center text-4xl font-bold tracking-tight text-text dark:text-gray-50 md:text-6xl">
             Login
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 ">
+          <p className="text-lg text-gray-600 dark:text-gray-400 md:text-xl">
             Bitte melden Sie sich an, um fortzufahren.
           </p>
         </div>

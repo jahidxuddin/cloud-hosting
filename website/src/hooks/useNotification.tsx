@@ -4,7 +4,7 @@ import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 
 export default function useNotification() {
-  const { uuid, setNotifications } = useUserStore();
+  const { setNotifications } = useUserStore();
   const router = useRouter();
 
   const fetchNotificationsFromUser = async () => {
@@ -16,7 +16,7 @@ export default function useNotification() {
       }
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/notification/read/${uuid}`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/notification/read-by-token`,
         {
           method: "GET",
           headers: {
@@ -26,16 +26,14 @@ export default function useNotification() {
         }
       );
 
-      const data = await res.json();
+      const data = await res.json();      
+
       const notificationRequestValidation =
         notificationsArraySchema.safeParse(data);
-
-      // TODO: Handle error
       if (notificationRequestValidation.error) return;
 
       setNotifications(notificationRequestValidation.data);
     } catch (error) {
-      // TODO: Handle error
       return;
     }
   };

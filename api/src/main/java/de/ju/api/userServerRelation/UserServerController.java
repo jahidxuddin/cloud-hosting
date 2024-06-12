@@ -1,10 +1,10 @@
 package de.ju.api.userServerRelation;
 
+import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.model.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -19,7 +19,7 @@ public class UserServerController {
     public ResponseEntity<?> getAllServerFromUser(@PathVariable("userId") UUID userId) {
         try {
             return ResponseEntity.ok(userServerService.getAllServerFromUser(userId));
-        } catch (UsernameNotFoundException e) {
+        } catch (EntityNotExistsException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
         }
     }
@@ -33,7 +33,7 @@ public class UserServerController {
 
         try {
             return ResponseEntity.ok(userServerService.getAllServerFromUser(token));
-        } catch (UsernameNotFoundException e) {
+        } catch (EntityNotExistsException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
         }
     }

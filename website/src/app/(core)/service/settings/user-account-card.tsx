@@ -50,7 +50,7 @@ export default function UserAccountCard() {
       formData.firstName,
       formData.lastName,
       formData.email,
-      formData.password
+      formData.password,
     );
     setFormData({
       ...formData,

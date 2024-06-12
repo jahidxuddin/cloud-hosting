@@ -1,27 +1,28 @@
-package de.ju.api.server;
+package de.ju.api.pricing;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity(name = "server")
+@Entity(name = "pricing")
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Server {
+public class Pricing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column(unique = true)
-    private String name;
-    private double ram = 0;
-    private double cpu = 0;
-    private double storage = 0;
+    private String title;
+    private String details;
     private double price;
-    private boolean status = false;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

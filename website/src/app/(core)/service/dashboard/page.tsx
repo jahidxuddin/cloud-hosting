@@ -11,11 +11,11 @@ import BuyCreditsBanner from "./buy-credits-banner";
 
 const MonthlyCostChart = dynamic(
   () => import("@/app/(core)/service/dashboard/monthly-cost-chart"),
-  { ssr: false }
+  { ssr: false },
 );
 const TotalCostChart = dynamic(
   () => import("@/app/(core)/service/dashboard/total-cost-chart"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function Dashboard() {
@@ -35,7 +35,9 @@ export default function Dashboard() {
           <BuyCreditsBanner />
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <Suspense fallback={<span className="text-4xl font-bold">Loading...</span>}>
+          <Suspense
+            fallback={<span className="text-4xl font-bold">Loading...</span>}
+          >
             <Card>
               <CardHeader>
                 <CardTitle className="font-bold text-text">

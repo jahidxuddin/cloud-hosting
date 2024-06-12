@@ -1,14 +1,14 @@
 package de.ju.api.user;
 
+import de.ju.api.exception.EntityAlreadyExistsException;
+import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.model.MessageResponse;
 import de.ju.api.security.model.AuthResponse;
-import de.ju.api.user.exception.UserAlreadyExistsException;
 import de.ju.api.user.model.AccountRequest;
 import de.ju.api.user.model.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class AppUserController {
         try {
             AppUser user = userService.findUserByToken(token);
             return ResponseEntity.ok(UserResponse.builder().uuid(user.getId()).firstName(user.getFirstName()).lastName(user.getLastName()).email(user.getEmail()).roles(user.getRoles()).credits(user.getCredits()).build());
-        } catch (UsernameNotFoundException e) {
+        } catch (EntityNotExistsException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
         }
     }
@@ -48,9 +48,9 @@ public class AppUserController {
         try {
             String newToken = userService.updateUserAccountByToken(token, request);
             return ResponseEntity.ok(new AuthResponse(newToken));
-        } catch (UsernameNotFoundException e) {
+        } catch (EntityNotExistsException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
-        } catch (UserAlreadyExistsException e) {
+        } catch (EntityAlreadyExistsException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageResponse(e.getMessage(), HttpStatus.BAD_REQUEST));
         }
     }

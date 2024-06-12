@@ -12,8 +12,8 @@ import { Input } from "@/components/ui/input";
 
 export default function ServerSettings() {
   return (
-    <div className="h-[90vh] grid gap-6 p-6">
-      <Card className="flex flex-col bg-gray-900 border-gray-800 text-white">
+    <div className="grid h-[90vh] gap-6 p-6">
+      <Card className="flex flex-col border-gray-800 bg-gray-900 text-white">
         <CardHeader>
           <CardTitle>Servername</CardTitle>
           <CardDescription>Ändere den Namen deines Servers.</CardDescription>
@@ -27,7 +27,7 @@ export default function ServerSettings() {
           <Button className="border border-gray-800">Speichern</Button>
         </CardFooter>
       </Card>
-      <Card className="flex flex-col bg-gray-900 border-gray-800 text-white">
+      <Card className="flex flex-col border-gray-800 bg-gray-900 text-white">
         <CardHeader>
           <CardTitle>Server kündigen</CardTitle>
           <CardDescription>
