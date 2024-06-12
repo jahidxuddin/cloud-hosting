@@ -20,7 +20,7 @@ public class Server {
     @Column(unique = true)
     private String name;
     private double ram = 0;
-    private double cpu = 0;
+    private float cpu = 0;
     private double storage = 0;
     private double price;
     private boolean status = false;
