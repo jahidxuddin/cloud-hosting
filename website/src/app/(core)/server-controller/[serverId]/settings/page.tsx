@@ -20,7 +20,7 @@ export default function ServerSettings() {
         </CardHeader>
         <CardContent className="flex-1">
           <form>
-            <Input placeholder="Servername"/>
+            <Input placeholder="Servername" className=" text-gray-900"/>
           </form>
         </CardContent>
         <CardFooter className="border-t border-gray-800 p-6">
