@@ -8,7 +8,6 @@ import de.ju.api.server.model.ServerStatusRequest;
 import de.ju.api.server.model.ServerRentRequest;
 import de.ju.api.user.AppUser;
 import de.ju.api.user.AppUserService;
-import de.ju.api.userServerRelation.UserServerKey;
 import de.ju.api.userServerRelation.UserServerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,10 +23,6 @@ public class ServerService {
     private final PricingService pricingService;
     private final UserServerService userServerService;
 
-    public Optional<Server> findServerById(UUID id) {
-        return repository.findById(id);
-    }
-
     public void rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException {
         AppUser user = userService.findUserById(request.userId());
 
@@ -42,7 +37,7 @@ public class ServerService {
 
         repository.save(server);
 
-        userServerService.addUserServerRelation(new UserServerKey(user.getId(), server.getId()));
+        userServerService.addUserServerRelation(user, server);
     }
 
     public void updateServerStatus(UUID uuid, ServerStatusRequest request) throws EntityNotExistsException {
