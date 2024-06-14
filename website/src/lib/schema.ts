@@ -37,6 +37,11 @@ const serverSchema = z.object({
 
 const serverArraySchema = z.array(serverSchema);
 
+const serverRentSchema = z.object({
+  token: z.string(),
+  credits: z.number(),
+});
+
 const notificationSchema = z.object({
   id: z.string().uuid(),
   content: z.string(),
@@ -62,5 +67,6 @@ export {
   updateAccountDataRequestSchema,
   notificationsArraySchema,
   serverArraySchema,
+  serverRentSchema,
   pricingArraySchema
 };

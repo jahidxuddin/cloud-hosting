@@ -5,6 +5,7 @@ import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.pricing.Pricing;
 import de.ju.api.pricing.PricingService;
 import de.ju.api.server.exception.NotEnoughCreditsException;
+import de.ju.api.server.model.ServerRentResponse;
 import de.ju.api.server.model.ServerStatusRequest;
 import de.ju.api.server.model.ServerRentRequest;
 import de.ju.api.user.AppUser;
@@ -25,7 +26,7 @@ public class ServerService {
     private final PricingService pricingService;
     private final UserServerService userServerService;
 
-    public String rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException, NotEnoughCreditsException {
+    public ServerRentResponse rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException, NotEnoughCreditsException {
         AppUser user = userService.findUserById(request.userId());
 
         Optional<Pricing> pricingOptional = pricingService.getPricingByUUID(request.pricingId());
@@ -43,7 +44,7 @@ public class ServerService {
 
         userServerService.addUserServerRelation(user, server);
 
-        return token;
+        return new ServerRentResponse(token, user.getCredits() - pricing.getPrice());
     }
 
     public void updateServerStatus(UUID uuid, ServerStatusRequest request) throws EntityNotExistsException {

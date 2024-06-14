@@ -26,6 +26,7 @@ type UserActions = {
   setUser: (user: User) => void;
   setAccount: (account: Account) => void;
   setNotifications: (notifications: Notification[]) => void;
+  setCredits: (credits: number) => void;
 };
 
 export const useUserStore = create<User & UserActions>((set) => ({
@@ -42,6 +43,10 @@ export const useUserStore = create<User & UserActions>((set) => ({
       firstName: account.firstName,
       lastName: account.lastName,
       email: account.email,
+    }),
+  setCredits: (credits: number) =>
+    set({
+      credits,
     }),
   setNotifications: (notifications: Notification[]) => set({ notifications }),
 }));

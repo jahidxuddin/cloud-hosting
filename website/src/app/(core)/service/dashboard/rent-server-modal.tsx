@@ -15,7 +15,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { messageSchema, pricingArraySchema, tokenSchema } from "@/lib/schema";
+import {
+  messageSchema,
+  pricingArraySchema,
+  serverRentSchema,
+  tokenSchema,
+} from "@/lib/schema";
 import { useUserStore } from "@/lib/store";
 import { getCookie, setCookie } from "cookies-next";
 import { CheckIcon } from "lucide-react";
@@ -45,7 +50,7 @@ const getRandomName = (length: number) => {
 
 export default function RentServerModal() {
   const router = useRouter();
-  const { uuid } = useUserStore();
+  const { uuid, setCredits } = useUserStore();
   const [pricings, setPricings] = useState<Pricing[]>([]);
 
   const fetchPricings = async () => {
@@ -105,14 +110,16 @@ export default function RentServerModal() {
     } catch (error) {
       return;
     }
+    
 
     const messageResponseValidation = messageSchema.safeParse(data);
-    if (messageResponseValidation.error) return;
+    if (messageResponseValidation.success) return;
+    
+    const serverRentResponseValidation = serverRentSchema.safeParse(data);
+    if (serverRentResponseValidation.error) return;
 
-    const tokenResponseValidation = tokenSchema.safeParse(data);
-    if (tokenResponseValidation.error) return;
-
-    setCookie("token", tokenResponseValidation.data);
+    setCredits(serverRentResponseValidation.data.credits);
+    setCookie("token", serverRentResponseValidation.data.token);
   };
 
   return (
