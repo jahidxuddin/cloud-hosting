@@ -4,10 +4,12 @@ import de.ju.api.exception.EntityAlreadyExistsException;
 import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.pricing.Pricing;
 import de.ju.api.pricing.PricingService;
+import de.ju.api.server.exception.NotEnoughCreditsException;
 import de.ju.api.server.model.ServerStatusRequest;
 import de.ju.api.server.model.ServerRentRequest;
 import de.ju.api.user.AppUser;
 import de.ju.api.user.AppUserService;
+import de.ju.api.user.model.CreditRequest;
 import de.ju.api.userServerRelation.UserServerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,21 +25,25 @@ public class ServerService {
     private final PricingService pricingService;
     private final UserServerService userServerService;
 
-    public void rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException {
+    public String rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException, NotEnoughCreditsException {
         AppUser user = userService.findUserById(request.userId());
 
         Optional<Pricing> pricingOptional = pricingService.getPricingByUUID(request.pricingId());
-        if (pricingOptional.isEmpty()) {
-            throw new EntityNotExistsException("Die Preisgestaltung existiert nicht.");
+        Pricing pricing = pricingOptional.orElseThrow(() -> new EntityNotExistsException("Preisgestaltung existiert nicht."));
+
+        if (user.getCredits() < pricing.getPrice()) {
+            throw new NotEnoughCreditsException("Benuter hat zu wenig Guthaben.");
         }
 
-        Pricing pricing = pricingOptional.get();
+        String token = userService.updateCredits(new CreditRequest(-pricing.getPrice(), user.getId()));
 
         Server server = Server.builder().name(request.name()).storage(1).price(pricing.getPrice()).build();
 
         repository.save(server);
 
         userServerService.addUserServerRelation(user, server);
+
+        return token;
     }
 
     public void updateServerStatus(UUID uuid, ServerStatusRequest request) throws EntityNotExistsException {

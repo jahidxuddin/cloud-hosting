@@ -1,6 +1,5 @@
 package de.ju.api.userServerRelation;
 
-import de.ju.api.exception.EntityAlreadyExistsException;
 import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.server.Server;
 import de.ju.api.user.AppUser;
@@ -38,9 +37,12 @@ public class UserServerService {
     }
 
     public void addUserServerRelation(AppUser user, Server server) {
-        repository.save(UserServerRelation.builder()
-                .user(user)
-                .server(server)
-                .build());
+        repository.save(
+                UserServerRelation.builder()
+                        .id(new UserServerKey(user.getId(), server.getId()))
+                        .user(user)
+                        .server(server)
+                        .build()
+        );
     }
 }

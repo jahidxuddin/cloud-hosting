@@ -4,6 +4,7 @@ import de.ju.api.exception.EntityAlreadyExistsException;
 import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.security.JwtService;
 import de.ju.api.user.model.AccountRequest;
+import de.ju.api.user.model.CreditRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -45,6 +46,13 @@ public class AppUserService {
         }
 
         return userRepository.findByEmail(username).orElseThrow(() -> new EntityNotExistsException("Benutzer existiert nicht."));
+    }
+
+    public String updateCredits(CreditRequest request) throws EntityNotExistsException {
+        AppUser user = repository.findById(request.userId()).orElseThrow(() -> new EntityNotExistsException("Benutzer existiert nicht."));
+        user.setCredits(user.getCredits() + request.amout());
+        repository.save(user);
+        return jwtService.generateToken(user);
     }
 
     public String updateUserAccountByToken(String token, AccountRequest account) throws EntityAlreadyExistsException, EntityNotExistsException {

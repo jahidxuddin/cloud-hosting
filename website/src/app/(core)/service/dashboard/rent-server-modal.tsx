@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/card";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { pricingArraySchema } from "@/lib/schema";
-import { getCookie } from "cookies-next";
+import { messageSchema, pricingArraySchema, tokenSchema } from "@/lib/schema";
+import { useUserStore } from "@/lib/store";
+import { getCookie, setCookie } from "cookies-next";
 import { CheckIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,8 +30,22 @@ type Pricing = {
   createdAt: string;
 };
 
+const getRandomName = (length: number) => {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+};
+
 export default function RentServerModal() {
   const router = useRouter();
+  const { uuid } = useUserStore();
   const [pricings, setPricings] = useState<Pricing[]>([]);
 
   const fetchPricings = async () => {
@@ -63,6 +79,42 @@ export default function RentServerModal() {
     fetchPricings();
   }, []);
 
+  const handleClick = async (pricingId: string) => {
+    let data;
+    try {
+      const token = getCookie("token");
+      if (!token) router.push("/login");
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/server/rent`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: getRandomName(16),
+            pricingId,
+            userId: uuid,
+          }),
+        },
+      );
+
+      data = await res.json();
+    } catch (error) {
+      return;
+    }
+
+    const messageResponseValidation = messageSchema.safeParse(data);
+    if (messageResponseValidation.error) return;
+
+    const tokenResponseValidation = tokenSchema.safeParse(data);
+    if (tokenResponseValidation.error) return;
+
+    setCookie("token", tokenResponseValidation.data);
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -74,7 +126,7 @@ export default function RentServerModal() {
         <DialogHeader>
           <DialogTitle>Preisgestaltung</DialogTitle>
         </DialogHeader>
-        <div>
+        <DialogClose>
           {pricings.length > 0 ? (
             pricings.map((pricing) => (
               <Card key={pricing.id}>
@@ -90,7 +142,7 @@ export default function RentServerModal() {
                   <ul>
                     {pricing.details.split(",").map((detail, index) => (
                       <li
-                        key={index}
+                        key={pricing.id + detail}
                         className="flex items-center gap-3 text-lg"
                       >
                         <CheckIcon /> {detail}
@@ -99,7 +151,10 @@ export default function RentServerModal() {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full rounded-md bg-primary py-3 font-bold uppercase text-white hover:bg-blue-600">
+                  <Button
+                    onClick={() => handleClick(pricing.id)}
+                    className="w-full rounded-md bg-primary py-3 font-bold uppercase text-white hover:bg-blue-600"
+                  >
                     Jetzt mieten
                   </Button>
                 </CardFooter>
@@ -108,7 +163,7 @@ export default function RentServerModal() {
           ) : (
             <span>Zurzeit sind keine Preisgestaltungen verfügbar.</span>
           )}
-        </div>
+        </DialogClose>
       </DialogContent>
     </Dialog>
   );
