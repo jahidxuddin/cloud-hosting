@@ -13,6 +13,7 @@ export default function LoginForm({ error }: { error: string }) {
     e.preventDefault();
     setIsLoading(true);
     await loginUser(new FormData(e.currentTarget));
+    setIsLoading(false);
   };
 
   return (

@@ -60,6 +60,13 @@ const pricingSchema = z.object({
 
 const pricingArraySchema = z.array(pricingSchema);
 
+const costsSchema = z.object({
+  date: z.string(),
+  costs: z.number(),
+});
+
+const costsArraySchema = z.array(costsSchema);
+
 export {
   messageSchema,
   tokenSchema,
@@ -68,5 +75,6 @@ export {
   notificationsArraySchema,
   serverArraySchema,
   serverRentSchema,
-  pricingArraySchema
+  pricingArraySchema,
+  costsArraySchema,
 };

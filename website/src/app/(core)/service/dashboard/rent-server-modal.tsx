@@ -26,6 +26,7 @@ import { getCookie, setCookie } from "cookies-next";
 import { CheckIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import revalidateServers from "../server-manager/action";
 
 type Pricing = {
   id: string;
@@ -119,6 +120,7 @@ export default function RentServerModal() {
     if (serverRentResponseValidation.error) return;
 
     setCredits(serverRentResponseValidation.data.credits);
+    revalidateServers();
     setCookie("token", serverRentResponseValidation.data.token);
   };
 

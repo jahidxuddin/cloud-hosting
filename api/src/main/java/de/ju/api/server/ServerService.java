@@ -1,5 +1,7 @@
 package de.ju.api.server;
 
+import de.ju.api.bill.BillService;
+import de.ju.api.bill.model.BillCreateRequest;
 import de.ju.api.exception.EntityAlreadyExistsException;
 import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.pricing.Pricing;
@@ -24,6 +26,7 @@ public class ServerService {
     private final ServerRepository repository;
     private final AppUserService userService;
     private final PricingService pricingService;
+    private final BillService billService;
     private final UserServerService userServerService;
 
     public ServerRentResponse rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException, NotEnoughCreditsException {
@@ -43,6 +46,8 @@ public class ServerService {
         repository.save(server);
 
         userServerService.addUserServerRelation(user, server);
+
+        billService.createBill(new BillCreateRequest(pricing.getPrice(), user.getId()));
 
         return new ServerRentResponse(token, user.getCredits() - pricing.getPrice());
     }
