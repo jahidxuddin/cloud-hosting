@@ -22,11 +22,11 @@ import {
   tokenSchema,
 } from "@/lib/schema";
 import { useUserStore } from "@/lib/store";
+import revalidateServers from "@/revalidators/revalidateServers";
 import { getCookie, setCookie } from "cookies-next";
 import { CheckIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import revalidateServers from "../server-manager/action";
 
 type Pricing = {
   id: string;
@@ -111,15 +111,15 @@ export default function RentServerModal() {
     } catch (error) {
       return;
     }
-    
 
     const messageResponseValidation = messageSchema.safeParse(data);
     if (messageResponseValidation.success) return;
-    
+
     const serverRentResponseValidation = serverRentSchema.safeParse(data);
     if (serverRentResponseValidation.error) return;
 
     setCredits(serverRentResponseValidation.data.credits);
+
     revalidateServers();
     setCookie("token", serverRentResponseValidation.data.token);
   };

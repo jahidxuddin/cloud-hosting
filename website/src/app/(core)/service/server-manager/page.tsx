@@ -11,13 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { messageSchema, serverArraySchema } from "@/lib/schema";
-import {
-  PowerIcon,
-  SettingsIcon,
-  ServerIcon,
-  TerminalIcon,
-  FileBoxIcon,
-} from "lucide-react";
+import { PowerIcon, ServerIcon, TerminalIcon, FileBoxIcon } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
