@@ -9,14 +9,12 @@ import NotificationBanner from "./notification-banner";
 import RentServerBanner from "./rent-server-banner";
 import BuyCreditsBanner from "./buy-credits-banner";
 
-const MonthlyCostChart = dynamic(
-  () => import("@/app/(core)/service/dashboard/monthly-cost-chart"),
-  { ssr: false },
-);
-const TotalCostChart = dynamic(
-  () => import("@/app/(core)/service/dashboard/total-cost-chart"),
-  { ssr: false },
-);
+const MonthlyCostChart = dynamic(() => import("./monthly-cost-chart"), {
+  ssr: false,
+});
+const TotalCostChart = dynamic(() => import("./total-cost-chart"), {
+  ssr: false,
+});
 
 export default function Dashboard() {
   const { fetchUserData } = useUser();
