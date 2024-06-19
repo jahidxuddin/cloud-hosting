@@ -2,6 +2,7 @@ package de.ju.api.userServerRelation;
 
 import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.model.MessageResponse;
+import de.ju.api.userServerRelation.model.UserServerRelationDeleteRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,16 @@ public class UserServerController {
 
         try {
             return ResponseEntity.ok(userServerService.getAllServerFromUser(token));
+        } catch (EntityNotExistsException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
+        }
+    }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<MessageResponse> removeUserServerRelation(@RequestBody UserServerRelationDeleteRequest request) {
+        try {
+            userServerService.removeUserServerRelation(request);
+            return ResponseEntity.ok(new MessageResponse("User Server Beziehung erfolgreich beendet", HttpStatus.OK));
         } catch (EntityNotExistsException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse(e.getMessage(), HttpStatus.NOT_FOUND));
         }

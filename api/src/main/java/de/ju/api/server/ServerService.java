@@ -7,9 +7,9 @@ import de.ju.api.exception.EntityNotExistsException;
 import de.ju.api.pricing.Pricing;
 import de.ju.api.pricing.PricingService;
 import de.ju.api.server.exception.NotEnoughCreditsException;
+import de.ju.api.server.model.ServerRentRequest;
 import de.ju.api.server.model.ServerRentResponse;
 import de.ju.api.server.model.ServerStatusRequest;
-import de.ju.api.server.model.ServerRentRequest;
 import de.ju.api.user.AppUser;
 import de.ju.api.user.AppUserService;
 import de.ju.api.user.model.CreditRequest;
@@ -28,6 +28,10 @@ public class ServerService {
     private final PricingService pricingService;
     private final BillService billService;
     private final UserServerService userServerService;
+
+    public Server findServerById(UUID uuid) throws EntityNotExistsException {
+        return repository.findById(uuid).orElseThrow(() -> new EntityNotExistsException("Server existiert nicht"));
+    }
 
     public ServerRentResponse rentServer(ServerRentRequest request) throws EntityAlreadyExistsException, EntityNotExistsException, NotEnoughCreditsException {
         AppUser user = userService.findUserById(request.userId());
@@ -55,12 +59,21 @@ public class ServerService {
     public void updateServerStatus(UUID uuid, ServerStatusRequest request) throws EntityNotExistsException {
         Optional<Server> serverOptional = repository.findById(uuid);
         if (serverOptional.isEmpty()) {
-            throw new EntityNotExistsException("Server existiert nicht.");
+            throw new EntityNotExistsException("Server existiert nicht");
         }
 
         Server updatedServer = serverOptional.get();
         updatedServer.setStatus(request.status());
 
         repository.save(updatedServer);
+    }
+
+    public void deleteServer(UUID uuid) throws EntityNotExistsException {
+        Optional<Server> serverOptional = repository.findById(uuid);
+        if (serverOptional.isEmpty()) {
+            throw new EntityNotExistsException("Server existiert nicht");
+        }
+
+        repository.delete(serverOptional.get());
     }
 }

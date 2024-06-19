@@ -11,11 +11,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { messageSchema, serverArraySchema } from "@/lib/schema";
-import { PowerIcon, ServerIcon, TerminalIcon, FileBoxIcon } from "lucide-react";
+import { PowerIcon, ServerIcon, EditIcon } from "lucide-react";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import PowerButton from "./power-button";
+import DeleteButton from "./delete-button";
 
 export default async function ServerManager() {
   const tokenCookie = cookies().get("token");
@@ -125,18 +125,10 @@ export default async function ServerManager() {
                             serverId={server.id}
                             currentStatus={server.status}
                           />
-                          <Link
-                            href={`/server-controller/${server.id}/console`}
-                          >
-                            <Button size="icon" variant="ghost">
-                              <TerminalIcon className="h-4 w-4" />
-                            </Button>
-                          </Link>
-                          <Link href={`/server-controller/${server.id}/files`}>
-                            <Button size="icon" variant="ghost">
-                              <FileBoxIcon className="h-4 w-4" />
-                            </Button>
-                          </Link>
+                          <Button size="icon" variant="ghost">
+                            <EditIcon className="h-4 w-4" />
+                          </Button>
+                          <DeleteButton serverId={server.id} />
                         </div>
                       </TableCell>
                     </TableRow>
