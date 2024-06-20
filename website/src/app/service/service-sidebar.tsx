@@ -5,18 +5,21 @@ import { LayoutDashboardIcon, ServerIcon, SettingsIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
+import logo from "@/../public/logo.png";
 
 export default function ServiceSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="fixed left-0 hidden h-screen w-1/5 space-y-2 border-r-2 pb-20 pt-4 lg:block">
-      <div className="p-2 text-center">
+    <div className="fixed left-0 hidden h-screen w-1/5 space-y-2 border-r-2 pb-28 pt-2 lg:block">
+      <div className="p-2 text-center flex items-center">
+        <Image src={logo} alt="Logo" width={70} height={70} />
         <h1
           className="cursor-pointer text-xl font-bold lg:text-xl 2xl:text-3xl"
           onClick={() => window.location.reload()}
         >
-          Hosting Anbieter
+          CloudHosting
         </h1>
       </div>
       <div className="flex h-full flex-col justify-between">

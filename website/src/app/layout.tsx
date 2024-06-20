@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Hosting Anbieter",
-    default: "Hosting Anbieter",
+    template: "%s | CloudHosting",
+    default: "CloudHosting",
   },
   description:
     "Ein Hosting Service, der als Datenbankprojekt für den Praktische Informatik Unterricht erbaut wurde.",

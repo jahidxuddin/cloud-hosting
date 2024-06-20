@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Image from "next/image";
+import logo from "@/../public/logo.png";
 
 export default function Home() {
   const tokenCookie = cookies().get("token");
@@ -17,6 +19,7 @@ export default function Home() {
   return (
     <main className="h-screen w-full pt-24 sm:pt-12 md:pt-0">
       <div className="flex h-screen flex-col items-center justify-center pb-24 dark:bg-gray-900 sm:pb-12 md:pb-0">
+        <Image src={logo} alt="Logo" width={150} height={150} />
         <div className="max-w-3xl px-4 text-center md:px-6">
           <h1 className="mb-4 text-4xl font-bold text-text dark:text-gray-100 md:text-6xl">
             Einfaches und zuverlässiges Hosting

@@ -35,5 +35,37 @@ export default function useServer() {
     revalidateServers();
   };
 
-  return { toggleServer };
+  const deleteServer = async (serverId: string) => {
+    const token = getCookie("token");
+    if (!token) redirect("/login");
+
+    let data;
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/user-server/remove`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}}`,
+          },
+          body: JSON.stringify({
+            token,
+            serverId,
+          }),
+        },
+      );
+
+      data = await res.json();
+    } catch (error) {
+      return;
+    }
+
+    const messageResponseValidation = messageSchema.safeParse(data);
+    if (messageResponseValidation.error) return;
+
+    revalidateServers();
+  };
+
+  return { toggleServer, deleteServer };
 }
